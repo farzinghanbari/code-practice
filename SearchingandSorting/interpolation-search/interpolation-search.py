@@ -1,14 +1,17 @@
 def interpolation_search(array, element, start_idx, end_idx):
-    while start_idx < end_idx:
-        pos = start_idx + int((element-array[start_idx])*(end_idx-start_idx) / (array[end_idx]-array[start_idx]))
+    while start_idx <= end_idx and element >= array[start_idx] and element <= array[end_idx]:
+        if start_idx == end_idx: 
+            if array[start_idx] == element:  
+                return start_idx; 
+            return -1; 
+        # pos = start_idx + int((element-array[start_idx])*(end_idx-start_idx) / (array[end_idx]-array[start_idx]))
+        pos = start_idx + int(((float(end_idx - start_idx) / ( array[end_idx] - array[start_idx])) * ( element - array[start_idx])))
         if array[pos] == element:
             return pos
         if element < array[pos]:
             end_idx = pos - 1
-            pos = start_idx + int((element-array[start_idx])*(end_idx-start_idx) / (array[end_idx]-array[start_idx]))
         else:
             start_idx = pos + 1
-            pos = start_idx + int((element-array[start_idx])*(end_idx-start_idx) / (array[end_idx]-array[start_idx]))
     return -1
 
 
